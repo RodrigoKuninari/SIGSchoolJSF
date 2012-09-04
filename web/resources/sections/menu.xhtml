@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <p:dock>
+        <p:menuitem value="Professor" url="professores.xhtml" icon="resources/images/layout/Professores.png"/>
+        <p:menuitem value="Coordenador" url="coordenadores.xhtml" icon="resources/images/layout/Coordenadores.png"/>
+        <p:menuitem value="Responsável" url="responsaveis.xhtml" icon="resources/images/layout/Responsaveis.png"/>
+        <p:menuitem value="Aluno" url="alunos.xhtml" icon="resources/images/layout/Alunos.png"/>
+        <p:menuitem value="Disciplina" url="disciplinas.xhtml" icon="resources/images/layout/Disciplinas.png"/>
+        <p:menuitem value="Definir Coordenador da Turma" url="coordenadorturmas.xhtml" icon="resources/images/layout/CoordenadorTurmas.png"/>
+        <p:menuitem value="Definir Professor da Disciplina" url="professordisciplinas.xhtml" icon="resources/images/layout/ProfessorDisciplinas.png"/>
+        <p:menuitem value="Definir Alunos da Turma" url="turmas.xhtml" icon="resources/images/layout/Turmas.png"/>
+        <p:menuitem value="Histórico dos Alunos" url="historiconotas.xhtml" icon="resources/images/layout/HistoricoNotas.png"/>
+        <p:menuitem value="Definir Atividade da Disciplina" url="avaliacoesprofessor.xhtml" icon="resources/images/layout/AvaliacoesProfessor.png"/>
+        <p:menuitem value="Aprovar Atividade da Disciplina" url="avaliacoes.xhtml" icon="resources/images/layout/Avaliacoes.png"/>
+        <p:menuitem value="Avaliar Atividade do Aluno" url="avaliacaoalunos.xhtml" icon="resources/images/layout/AvaliacaoAlunos.png"/>
+        <p:menuitem value="Visualizar Atividade da Disciplina" url="calendario.xhtml" icon="resources/images/layout/Calendario.png"/>
+    </p:dock>
+
+    <p:confirmDialog widgetVar="confirmation" message="#{msgs.quitConfirmQuestion}">
+        <p:commandButton value="#{msgs.yes}" action="#{loginBean.logout()}" oncomplete="quitConfirmModalDialog.hide()" ajax="false" immediate="true"/>
+        <p:commandButton value="#{msgs.no}" onclick="quitConfirmModalDialog.hide()"/>
+    </p:confirmDialog>
+
+</ui:composition>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml">
+
+    <ui:define name="content">
+        <div id="page-content">
+            <div id="icone">
+                <img src="resources/images/layout/Calendario.png" alt="Calendario"/>
+            </div>
+            <div class="cabecalhoListagem">
+                <h1 class="tituloListagem">#{msgs.atividades}</h1>
+                <h:commandButton styleClass="right" value="Voltar" action="welcome" immediate="true"/>
+            </div>
+            <div align="center">
+                <p></p>
+            </div>
+            <div align="center">
+                <p:schedule value="#{avaliacaoMgrBean.eventModel}" locale="pt" >
+                </p:schedule>
+                <p:dialog widgetVar="eventDialog" header="Detalhes da Atividade" showEffect="clip" hideEffect="clip">  
+                    <h:panelGrid id="eventDetails" columns="2">  
+                        <h:outputLabel for="professor" value="Professor:" />
+                        <h:outputLabel id="professor" value="#{avaliacaoMgrBean.avaliacao.professorDisciplina.professor.nome}"/>
+
+                        <h:outputLabel for="disciplina" value="Disciplina:" />
+                        <h:outputLabel id="disciplina" value="#{avaliacaoMgrBean.avaliacao.professorDisciplina.disciplina.nome}"/>
+
+                        <h:outputLabel for="nome" value="Nome:" />
+                        <h:outputLabel id="nome" value="#{avaliacaoMgrBean.avaliacao.nome}"/>
+
+                        <h:outputLabel for="descricao" value="Descrição:" />
+                        <h:outputLabel id="descricao" value="#{avaliacaoMgrBean.avaliacao.descricao}"/>
+
+                    </h:panelGrid>  
+                </p:dialog>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

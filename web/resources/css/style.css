@@ -1,0 +1,165 @@
+
+/* Elementos gerais da página */
+html { 
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: Verdana, Arial, sans-serif;
+    color: #4894c4;
+    font-weight: normal;
+    font-variant: small-caps;
+}
+
+body {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: rgb(250, 250, 250);
+    font-size: 14px;
+}
+
+td {
+    font-family: Verdana, Arial, sans-serif;
+    color: #222;
+    font-weight: normal;
+    font-variant: small-caps;
+}
+
+#site {
+    background-color: white;
+    margin-top: 30px;
+    width: 980px;
+    border: 1px solid black;
+
+}
+
+#cabecalho {
+    margin: 20px;
+    height: 120px;
+    background: url(../images/layout/SIGSchool.png) no-repeat;
+}
+
+#menu {
+    text-align: center;
+    margin: 20px;
+    width: 600px;
+}
+
+#rodape {
+    margin-top: 50px;
+    text-align: center;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: smaller;
+    color: #4894c4;
+}
+
+#page-content {
+    background-color: #fafafa;
+}
+
+#login {
+    width: 900px;
+    height: 900px;
+}
+
+#boasvindas {
+    font-family: Verdana;
+    font-size: large;
+}
+
+#loginmessage {
+    font-family: Verdana;
+    font-size: smaller;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#exportar{
+    width: 100%;
+}
+
+#exportarleft{
+    width: 150px;
+    float: left;
+}
+
+#exportarright{
+    width: 150px;
+    float: right;
+}
+
+#icone{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    float: left;
+}
+
+/** Configuracoes de elementos **/
+.hidden {
+    display: none;
+}
+.button {
+    font-size: 10px;
+}
+.cabecalhoListagem {
+    background-color: #fafafa;
+    height: 60px;
+    padding-top: 30px;
+}
+.tituloListagem {
+    font-family: Verdana, Arial, sans-serif;
+    color: #4894c4;
+    font-weight: normal;
+    font-variant: small-caps;
+    float:left;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+.borderField{
+    border: 1px solid white;
+}
+
+.alignedField{
+    display: inline-block;
+}
+.novoRegistroButton {
+    float: right;
+}
+
+.ui-widget {
+    font-size: 90% !important;
+}
+
+a:hover {
+    color: #666666;
+}
+.left {
+    float: left;
+}
+.right {
+    color: #4894c4;
+    font-weight: bold;
+    float: right;
+}
+.more {
+    text-align: right;
+}
+.clear {
+    clear: both;
+}
+
+.ui-widget {
+    font-size: 95% !important;
+}
+
+.buttonFormCadastro {
+    color: #4894c4;
+    font-weight: bold;
+}
+
+.inputTextForm {
+    width: 316px;
+}

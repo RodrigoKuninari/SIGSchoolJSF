@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <!--
+        @author Rodrigo Kuninari
+
+        Template de definicao do layout padrao das paginas da aplicacao.
+    -->
+    <f:view contentType="text/html" encoding="UTF-8">
+        <h:head>
+            <title>#{msgs.systemTitle}</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+            <h:outputScript name="js/locale-primefaces.js" />
+        </h:head>
+
+        <h:body>
+            <div id="cabecalho">
+                <div id="logo">
+                </div>
+            </div>
+
+            <div id="conteudo">
+                <h:form>
+                    <div id="menu">
+                        <!-- PAGE MENU -->
+                        <ui:insert name="menu">
+                            <ui:include src="/resources/sections/menu.xhtml"/>
+                        </ui:insert>
+                    </div>
+                    <!-- PAGE CONTENT -->
+                    <ui:insert name="content">
+                    </ui:insert>
+                </h:form>
+            </div>
+        </h:body>
+    </f:view>
+
+</html>

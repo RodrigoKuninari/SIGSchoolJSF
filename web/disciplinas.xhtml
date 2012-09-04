@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml">
+
+    <ui:define name="content">
+        <div id="page-content">
+            <div id="icone">
+                <img src="resources/images/layout/Disciplinas.png" alt="Disciplinas"/>
+            </div>
+            <div class="cabecalhoListagem">
+                <h1 class="tituloListagem">#{msgs.disciplinas}</h1>
+                <h:commandButton styleClass="right" value="Nova Disciplina" action="#{disciplinaMgrBean.novaDisciplina()}"/>
+            </div>
+            <div align="center">
+                <p></p>
+            </div>
+            <div align="center">
+                <p:dataTable id="tbl" var="disciplina" value="#{disciplinaMgrBean.listarDisciplinas()}"
+                             paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="10,20,30,40,50" resizableColumns="false"
+                             widgetVar="fullTable" emptyMessage="Nenhum Registro Encontrado">
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Pesquisar em todos os Filtros:" />  
+                            <p:inputText id="globalFilter" onkeyup="fullTable.filter()" style="width:200px" />  
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column sortBy="#{disciplina.nome}" filterBy="#{disciplina.nome}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{disciplina.nome}"/>
+                    </p:column>
+
+                    <p:column sortBy="#{disciplina.ativa}" filterBy="#{disciplina.ativa}" filterOptions="#{tableBean.manufacturerOptions}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Ativa?"/>
+                        </f:facet>
+                        <p:selectBooleanButton value="#{disciplina.ativa}" onLabel="Sim" offLabel="Não" onIcon="ui-icon-check" offIcon="ui-icon-close" disabled="true"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Editar"/>
+                        </f:facet>
+                        <p:commandButton title="Editar" action="disciplinaform" image="ui-icon-pencil" ajax="false">
+                            <f:setPropertyActionListener value="#{disciplina}" target="#{disciplinaMgrBean.disciplina}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </div>
+            <div id="exportarleft">
+                <h:panelGrid columns="2">  
+                    <p:panel header="Exportar Todos os Dados">
+                        <h:commandLink> 
+                            <p:graphicImage value="resources/images/layout/icon-excel.png" />  
+                            <p:dataExporter type="xls" target="tbl" fileName="Disciplinas" excludeColumns="2"/>  
+                        </h:commandLink>  
+                        <h:commandLink>  
+                            <p:graphicImage value="resources/images/layout/icon-pdf.png" />  
+                            <p:dataExporter type="pdf" target="tbl" fileName="Disciplinas" excludeColumns="2" preProcessor="#{disciplinaMgrBean.preProcessPDF}"/>  
+                        </h:commandLink>  
+                    </p:panel>
+                </h:panelGrid>
+            </div>
+            <div id="exportarright">
+                <h:panelGrid columns="2">
+                    <p:panel header="Exportar Somente Dados da Página">  
+                        <h:commandLink>   
+                            <p:graphicImage value="resources/images/layout/icon-excel.png" />  
+                            <p:dataExporter type="xls" target="tbl" fileName="Disciplinas" pageOnly="true" excludeColumns="2"/>  
+                        </h:commandLink>  
+                        <h:commandLink>  
+                            <p:graphicImage value="resources/images/layout/icon-pdf.png" />  
+                            <p:dataExporter type="pdf" target="tbl" fileName="Disciplinas" pageOnly="true" excludeColumns="2" preProcessor="#{disciplinaMgrBean.preProcessPDF}"/>  
+                        </h:commandLink>  
+                    </p:panel>  
+                </h:panelGrid>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

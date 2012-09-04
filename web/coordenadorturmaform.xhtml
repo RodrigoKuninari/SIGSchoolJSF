@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <div id="page-content">
+            <div class="borderField">
+                <p:panel header="#{msgs.coordenadorturmaInfo}">
+                    <h:panelGrid columns="2" cellpadding="0">
+                        <h:outputLabel value="Coordenador:" for="coordenador"/>
+                        <p:selectOneMenu id="coordenador" value="#{coordenadorTurmaMgrBean.coordenadorTurma.coordenador}" converter="coordenadorConverter" required="true" requiredMessage="Campo Coordenador é obrigatório">  
+                            <f:selectItem itemLabel="Selecione" itemValue=""/>
+                            <f:selectItems value="#{coordenadorTurmaMgrBean.listarCoordenadoresAtivos()}" var="coordenador" itemValue="#{coordenador}" itemLabel="#{coordenador.nome}"/>
+                        </p:selectOneMenu>
+                        
+                        <h:outputLabel value="Série:" for="serie"/>
+                        <p:selectOneMenu id="serie" value="#{coordenadorTurmaMgrBean.coordenadorTurma.serie}"
+                                          required="true" requiredMessage="Campo Turma é obrigatório">
+                            <f:selectItem itemLabel="Selecione" itemValue=""/>
+                            <f:selectItem itemLabel="1ª Série - Ensino Fundamental" itemValue="1ª Série - Ensino Fundamental"/>
+                            <f:selectItem itemLabel="2ª Série - Ensino Fundamental" itemValue="2ª Série - Ensino Fundamental"/>
+                            <f:selectItem itemLabel="3ª Série - Ensino Fundamental" itemValue="3ª Série - Ensino Fundamental"/>
+                            <f:selectItem itemLabel="4ª Série - Ensino Fundamental" itemValue="4ª Série - Ensino Fundamental"/>
+                            <f:selectItem itemLabel="5ª Série - Ensino Fundamental" itemValue="5ª Série - Ensino Fundamental"/>
+                            <f:selectItem itemLabel="6ª Série - Ensino Fundamental" itemValue="6ª Série - Ensino Fundamental"/>
+                            <f:selectItem itemLabel="7ª Série - Ensino Fundamental" itemValue="7ª Série - Ensino Fundamental"/>
+                            <f:selectItem itemLabel="8ª Série - Ensino Fundamental" itemValue="8ª Série - Ensino Fundamental"/>
+                            <f:selectItem itemLabel="9ª Série - Ensino Fundamental" itemValue="9ª Série - Ensino Fundamental"/>
+                        </p:selectOneMenu>
+                        
+                        <h:outputLabel value="Ano:" for="ano"/>
+                        <p:selectOneMenu id="ano" value="#{coordenadorTurmaMgrBean.coordenadorTurma.ano}"
+                                          required="true" requiredMessage="Campo Ano é obrigatório">
+                            <f:selectItem itemLabel="Selecione" itemValue=""/>
+                            <f:selectItem itemLabel="2012" itemValue="2012"/>
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+                </p:panel>
+            </div>
+            <h:commandButton styleClass="buttonFormCadastro" value="Salvar" action="#{coordenadorTurmaMgrBean.salvarCoordenadorTurma()}"/>
+            <h:commandButton styleClass="buttonFormCadastro" value="Cancelar/Voltar" action="coordenadorturmas" immediate="true"/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <p:growl />
+        </div>
+    </ui:define>
+</ui:composition>

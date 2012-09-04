@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Arquivo exemplo de configuracao de acesso ao banco. 
+    Nao modifique o conteudo desse template. Simplesmente copie e renomeie o arquivo para "persistence.xml".
+    As configuracoes de username, password e url do banco provavelmente precisarao ser alteradas.
+    Modifique as propriedades hibernate.connection.username, hibernate.connection.password e hibernate.connection.url respectivamente.
+    
+    Caso o banco ainda nao esteja criado, descomente a linha <property name="hibernate.hbm2ddl.auto" value="update"/>
+    e modifique a propriedade hibernate.hbm2ddl.auto com o valor create:
+    <property name="hibernate.hbm2ddl.auto" value="create"/>
+-->
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="SIGSchoolPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <non-jta-data-source>SIGSchoolDB</non-jta-data-source>
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <!-- 
+                Configuracoes: username, password e url do banco 
+            -->
+      <property name="hibernate.connection.username" value="postgres"/>
+      <property name="hibernate.connection.password" value="rkn1312"/>
+      <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/SIGSchool"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.showSql" value="true"/>
+      <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
+    </properties>
+  </persistence-unit>
+</persistence>
