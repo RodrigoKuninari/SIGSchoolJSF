@@ -1,0 +1,33 @@
+h1. *SIGSchoolJSF*
+
+h2. _Descrição_
+
+O Sistema consiste em uma agenda on-line que substitua as clássicas e conhecidas agendas de papel. Dessa forma os pais poderão a qualquer momento e de qualquer lugar acessar a agenda escolar de seu filho, onde conterá um calendário no qual estarão marcadas as tarefas, atividades, datas e notas das provas de seus filhos. Também será possível acessar notas de provas antigas e atuais, e observações feitas pelos coordenadores e professores.
+
+h2. _Tecnologias/Linguagens Utilizadas_
+
+* *IDE*: NetBeans 7.1
+* *Plataforma*: Java Enterprise Edition 6
+* *Banco de Dados*: PostgreSQL 9.1
+* *Servidor de Aplicação*: GlassFish Server 3.1
+* *Arquitetura*: MVC (Model-View-Controller)
+* *Padrões de Projeto*: DAO (Data Access Object)
+* *Apresentação* via xHTML, Javascript e JQuery
+
+h2. _Frameworks_
+
+* Hibernate (JPA 2.0)
+* Java Server Faces 2.0
+* PrimeFaces 3.1.1
+
+h2. _Configurações_
+
+É necessário a inclusão das seguintes bibliotecas para o correto funcionamento:
+
+* *Hibernate*
+* *Hibernate JPA*
+* *Apache Commons Lang 3.0.1* (http://apache.mirror.pop-sc.rnp.br/apache//commons/lang/binaries/commons-lang3-3.0.1-bin.zip)
+* *Apache POI 3.8* (http://www.apache.org/dyn/closer.cgi/poi/release/bin/poi-bin-3.8-20120326.zip)
+* *IText 2.1.7* (http://repo1.maven.org/maven2/com/lowagie/itext/2.1.7/itext-2.1.7.jar)
+* *PrimeFaces 3.1.1* (http://repository.primefaces.org/org/primefaces/primefaces/3.1.1/primefaces-3.1.1.jar)
+* *PrimeFaces Theme Hot Sneaks 1.0.1* (http://repository.primefaces.org/org/primefaces/themes/hot-sneaks/1.0.1/hot-sneaks-1.0.1.jar)
