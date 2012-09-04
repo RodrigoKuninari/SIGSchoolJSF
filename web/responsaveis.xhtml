@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml">
+
+    <ui:define name="content">
+        <div id="page-content">
+            <div id="icone">
+                <img src="resources/images/layout/Responsaveis.png" alt="Responsaveis"/>
+            </div>
+            <div class="cabecalhoListagem">
+                <h1 class="tituloListagem">#{msgs.responsaveis}</h1>
+                <h:commandButton styleClass="right" value="Novo Responsável" action="#{responsavelMgrBean.novoResponsavel()}"/>
+            </div>
+            <div align="center">
+                <p></p>
+            </div>
+            <div align="center">
+                <p:dataTable id="tbl" var="responsavel" value="#{responsavelMgrBean.listarResponsaveis()}"
+                             paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="10,20,30,40,50" resizableColumns="false"
+                             widgetVar="fullTable" emptyMessage="Nenhum Registro Encontrado">
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Pesquisar em todos os Filtros:" />  
+                            <p:inputText id="globalFilter" onkeyup="fullTable.filter()" style="width:200px" />  
+                        </p:outputPanel>
+                    </f:facet>
+                    
+                    <p:column sortBy="#{responsavel.nome}" filterBy="#{responsavel.nome}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{responsavel.nome}"/>
+                    </p:column>
+                    
+                    <p:column sortBy="#{responsavel.cpf}" filterBy="#{responsavel.cpf}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="CPF"/>
+                        </f:facet>
+                        <h:outputText value="#{responsavel.cpf}"/>
+                    </p:column>
+                    
+                    <p:column sortBy="#{responsavel.rg}" filterBy="#{responsavel.rg}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="RG"/>
+                        </f:facet>
+                        <h:outputText value="#{responsavel.rg}"/>
+                    </p:column>
+                    
+                    <p:column sortBy="#{responsavel.telRes}" filterBy="#{responsavel.telRes}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Telefone"/>
+                        </f:facet>
+                        <h:outputText value="#{responsavel.telRes}"/>
+                    </p:column>
+                    
+                    <p:column sortBy="#{responsavel.telCel}" filterBy="#{responsavel.telCel}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Celular"/>
+                        </f:facet>
+                        <h:outputText value="#{responsavel.telCel}"/>
+                    </p:column>
+                    
+                    <p:column sortBy="#{responsavel.email}" filterBy="#{responsavel.email}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="E-Mail"/>
+                        </f:facet>
+                        <h:outputText value="#{responsavel.email}"/>
+                    </p:column>
+                    
+                    <p:column sortBy="#{responsavel.ativo}" filterBy="#{responsavel.ativo}" filterOptions="#{tableBean.manufacturerOptions}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Ativo?"/>
+                        </f:facet>
+                        <p:selectBooleanButton value="#{responsavel.ativo}" onLabel="Sim" offLabel="Não" onIcon="ui-icon-check" offIcon="ui-icon-close" disabled="true"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Editar"/>
+                        </f:facet>
+                        <p:commandButton title="Editar" action="responsavelform" image="ui-icon-pencil" ajax="false">
+                            <f:setPropertyActionListener value="#{responsavel}" target="#{responsavelMgrBean.responsavel}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </div>
+            <div id="exportarleft">
+                <h:panelGrid columns="2">  
+                    <p:panel header="Exportar Todos os Dados">  
+                        <h:commandLink>  
+                            <p:graphicImage value="resources/images/layout/icon-excel.png" />  
+                            <p:dataExporter type="xls" target="tbl" fileName="Responsaveis" excludeColumns="7"/>  
+                        </h:commandLink>  
+                        <h:commandLink>  
+                            <p:graphicImage value="resources/images/layout/icon-pdf.png" />  
+                            <p:dataExporter type="pdf" target="tbl" fileName="Responsaveis" excludeColumns="7" preProcessor="#{responsavelMgrBean.preProcessPDF}"/>  
+                        </h:commandLink>  
+                    </p:panel>
+                </h:panelGrid>
+            </div>
+            <div id="exportarright">
+                <h:panelGrid columns="2">
+                    <p:panel header="Exportar Somente Dados da Página">  
+                        <h:commandLink>  
+                            <p:graphicImage value="resources/images/layout/icon-excel.png" />  
+                            <p:dataExporter type="xls" target="tbl" fileName="Responsaveis" pageOnly="true" excludeColumns="7"/>  
+                        </h:commandLink>  
+                        <h:commandLink>  
+                            <p:graphicImage value="resources/images/layout/icon-pdf.png" />  
+                            <p:dataExporter type="pdf" target="tbl" fileName="Responsaveis" pageOnly="true" excludeColumns="7" preProcessor="#{responsavelMgrBean.preProcessPDF}"/>  
+                        </h:commandLink>  
+                    </p:panel>  
+                </h:panelGrid>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>#{msgs.systemTitle}</title>
+    </h:head>
+    <h:body>
+        <div id="login" align="center">
+            <h:form>
+                <p:commandButton value="#{msgs.systemTitle}" onclick="dlg1.show();" type="button" />
+                <p:dialog header="#{msgs.systemTitle}" widgetVar="dlg1" width="600" height="200"
+                          showEffect="explode" hideEffect="explode">
+                    <p>Bem-Vindo ao SIGSchool</p>
+                    <h:panelGrid columns="2" cellpadding="0" cellspacing="1">
+                        <h:outputLabel value="Login:" for="login"/>
+                        <p:inputText id="login" title="Login" value="#{loginMgrBean.usuario.nomeLogin}"
+                                     required="true" requiredMessage="Campo Login é obrigatório"/>
+                        <h:outputLabel value="Senha:" for="senha"/>
+                        <p:password id="senha" title="Senha" value="#{loginMgrBean.usuario.senha}"
+                                    required="true" requiredMessage="Campo Senha é obrigatório"
+                                    promptLabel="Digite a Senha" weakLabel="Fraca" goodLabel="Média" strongLabel="Boa"/>
+                        <f:facet name="footer">
+                            <p:menubar>
+                                <p:menuitem value="Entrar" url="welcome.xhtml" icon="ui-icon-check"/>
+                                <p:menuitem value="Cancelar" url="http://localhost:8080/SIGSchoolJSF/" icon="ui-icon-cancel"/>
+                            </p:menubar>
+                        </f:facet> 
+                    </h:panelGrid>
+                </p:dialog>
+            </h:form>
+            <img src="resources/images/layout/SIGSchoolLogin.png" alt="SIGSchool"></img>
+        </div>
+    </h:body>
+</html>
+

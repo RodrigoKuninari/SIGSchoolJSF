@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <div id="page-content">
+            <div class="borderField">
+                <p:panel header="#{msgs.alunoInfo}">
+                    <h:panelGrid columns="2" cellpadding="0">
+                        <h:outputLabel value="Nome:" for="nome"/>
+                        <p:inputText id="nome" value="#{alunoMgrBean.aluno.nome}" title="Nome"
+                                     required="true" requiredMessage="Campo Nome é obrigatório" styleClass="inputTextForm"/>
+                        
+                        <h:outputLabel value="Matrícula:" for="matricula"/>
+                        <p:inputText id="matricula" value="#{alunoMgrBean.aluno.matricula}" title="Matrícula"
+                                     required="true" requiredMessage="Campo CPF é obrigatório"/>
+                        
+                        <h:outputLabel value="Data de Nascimento:" for="dataNasc"/>
+                        <p:inputMask id="dataNasc" value="#{alunoMgrBean.dataNascimento}" title="Data de Nascimento"
+                                     required="true" requiredMessage="Campo Data de Nascimento é obrigatório" mask="99/99/9999"/>
+                        
+                        <h:outputLabel value="Sexo:" for="sexo"/>
+                        <p:selectOneRadio id="sexo" value="#{alunoMgrBean.aluno.sexo}"
+                                          required="true" requiredMessage="Campo Sexo é obrigatório">
+                            <f:selectItem itemLabel="Feminino" itemValue="Feminino"/>
+                            <f:selectItem itemLabel="Masculino" itemValue="Masculino"/>
+                        </p:selectOneRadio>
+                        
+                        <h:outputLabel value="Endereço:" for="endereco"/>
+                        <p:inputTextarea id="endereco" value="#{alunoMgrBean.aluno.endereco}" title="Endereço" cols="50" rows="5"
+                                     required="true" requiredMessage="Campo Endereço é obrigatório"/>
+                        
+                        <h:outputLabel value="Telefone:" for="telRes"/>
+                        <p:inputMask id="telRes" value="#{alunoMgrBean.aluno.telRes}" title="Telefone"
+                                     required="true" requiredMessage="Campo Telefone é obrigatório" mask="(99)9999-9999"/>
+                        
+                        <h:outputLabel value="Celular:" for="telCel"/>
+                        <p:inputMask id="telCel" value="#{alunoMgrBean.aluno.telCel}" title="Celular" mask="(99)9999-9999"/>
+                        
+                        <h:outputLabel value="E-Mail:" for="email"/>
+                        <p:inputText id="email" value="#{alunoMgrBean.aluno.email}" title="E-Mail" styleClass="inputTextForm"/>
+                        
+                        <h:outputLabel value="Responsável:" for="responsavel"/>
+                        <p:selectOneMenu id="responsavel" value="#{alunoMgrBean.aluno.responsavel}" converter="responsavelConverter" required="true" requiredMessage="Campo Responsável é obrigatório">  
+                            <f:selectItem itemLabel="Selecione" itemValue=""/>
+                            <f:selectItems value="#{alunoMgrBean.listarResponsaveisAtivos()}" var="responsavel" itemValue="#{responsavel}" itemLabel="#{responsavel.nome}"/>
+                        </p:selectOneMenu>
+                        
+                        <h:outputLabel value="Aluno Ativo?"/>
+                        <p:selectBooleanButton value="#{alunoMgrBean.aluno.ativo}" onLabel="Sim" offLabel="Não" onIcon="ui-icon-check" offIcon="ui-icon-close"/>
+                    </h:panelGrid>
+                </p:panel>
+            </div>
+            <h:commandButton styleClass="buttonFormCadastro" value="Salvar" action="#{alunoMgrBean.salvarAluno()}"/>
+            <h:commandButton styleClass="buttonFormCadastro" value="Cancelar/Voltar" action="alunos" immediate="true"/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <p:growl />
+        </div>
+    </ui:define>
+</ui:composition>

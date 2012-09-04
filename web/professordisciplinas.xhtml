@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml">
+
+    <ui:define name="content">
+        <div id="page-content">
+            <div id="icone">
+                <img src="resources/images/layout/ProfessorDisciplinas.png" alt="ProfessorDisciplinas"/>
+            </div>
+            <div class="cabecalhoListagem">
+                <h1 class="tituloListagem">#{msgs.professordisciplinas}</h1>
+                <h:commandButton styleClass="right" value="Novo Professor da Disciplina" action="#{professorDisciplinaMgrBean.novoProfessorDisciplina()}"/>
+            </div>
+            <div align="center">
+                <p></p>
+            </div>
+            <div align="center">
+                <p:dataTable id="tbl" var="professorDisciplina" value="#{professorDisciplinaMgrBean.listarProfessorDisciplinas()}"
+                             paginator="true" rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="10,20,30,40,50" resizableColumns="false"
+                             widgetVar="fullTable" emptyMessage="Nenhum Registro Encontrado">
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Pesquisar em todos os Filtros:" />  
+                            <p:inputText id="globalFilter" onkeyup="fullTable.filter()" style="width:200px" />  
+                        </p:outputPanel>
+                    </f:facet>
+                    
+                    <p:column sortBy="#{professorDisciplina.coordenadorTurma.ano} - #{professorDisciplina.coordenadorTurma.serie} - #{professorDisciplina.coordenadorTurma.coordenador.nome}" filterBy="#{professorDisciplina.coordenadorTurma.ano} - #{professorDisciplina.coordenadorTurma.serie} - #{professorDisciplina.coordenadorTurma.coordenador.nome}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Turma"/>
+                        </f:facet>
+                        <h:outputText value="#{professorDisciplina.coordenadorTurma.ano} - #{professorDisciplina.coordenadorTurma.serie} - #{professorDisciplina.coordenadorTurma.coordenador.nome}"/>
+                    </p:column>
+
+                    <p:column sortBy="#{professorDisciplina.professor.nome}" filterBy="#{professorDisciplina.professor.nome}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Professor"/>
+                        </f:facet>
+                        <h:outputText value="#{professorDisciplina.professor.nome}"/>
+                    </p:column>
+
+                    <p:column sortBy="#{professorDisciplina.disciplina.nome}" filterBy="#{professorDisciplina.disciplina.nome}" filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Disciplina"/>
+                        </f:facet>
+                        <h:outputText value="#{professorDisciplina.disciplina.nome}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Editar"/>
+                        </f:facet>
+                        <p:commandButton title="Editar" action="professordisciplinaform" image="ui-icon-pencil" ajax="false">
+                            <f:setPropertyActionListener value="#{professorDisciplina}" target="#{professorDisciplinaMgrBean.professorDisciplina}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </div>
+            <div id="exportarleft">
+                <h:panelGrid columns="2">  
+                    <p:panel header="Exportar Todos os Dados">  
+                        <h:commandLink>
+                            <p:graphicImage value="resources/images/layout/icon-excel.png" />  
+                            <p:dataExporter type="xls" target="tbl" fileName="ProfessorDisciplinas" excludeColumns="3"/>  
+                        </h:commandLink>
+                        <h:commandLink>
+                            <p:graphicImage value="resources/images/layout/icon-pdf.png" />  
+                            <p:dataExporter type="pdf" target="tbl" fileName="ProfessorDisciplinas" excludeColumns="3" preProcessor="#{professorDisciplinaMgrBean.preProcessPDF}"/>  
+                        </h:commandLink>  
+                    </p:panel>
+                </h:panelGrid>
+            </div>
+            <div id="exportarright">
+                <h:panelGrid columns="2">
+                    <p:panel header="Exportar Somente Dados da Página">  
+                        <h:commandLink>   
+                            <p:graphicImage value="resources/images/layout/icon-excel.png" />  
+                            <p:dataExporter type="xls" target="tbl" fileName="ProfessorDisciplinas" pageOnly="true" excludeColumns="3"/>  
+                        </h:commandLink>
+                        <h:commandLink>  
+                            <p:graphicImage value="resources/images/layout/icon-pdf.png" />  
+                            <p:dataExporter type="pdf" target="tbl" fileName="ProfessorDisciplinas" pageOnly="true" excludeColumns="3" preProcessor="#{professorDisciplinaMgrBean.preProcessPDF}"/>  
+                        </h:commandLink>
+                    </p:panel>  
+                </h:panelGrid>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

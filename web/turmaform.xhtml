@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/resources/template/template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="content">
+        <div id="page-content">
+            <div class="borderField">
+                <p:panel header="#{msgs.turmaInfo}">
+                    <h:panelGrid columns="2" cellpadding="0">
+                        <h:outputLabel value="Turma:" for="turma"/>
+                        <p:selectOneMenu id="turma" value="#{turmaMgrBean.coordenadorTurma}" converter="coordenadorTurmaConverter" required="true" requiredMessage="Campo Turma é obrigatório">  
+                            <f:selectItem itemLabel="Selecione" itemValue=""/>
+                            <f:selectItems value="#{turmaMgrBean.listarCoordenadorTurmas()}" var="coordenadorTurma" itemValue="#{coordenadorTurma}" itemLabel="#{coordenadorTurma.ano} - #{coordenadorTurma.serie} - #{coordenadorTurma.coordenador.nome}"/>
+                        </p:selectOneMenu>
+
+                        <h:outputText value="Alunos:" />  
+                        <p:selectManyCheckbox value="#{turmaMgrBean.selectedRoles}" converter="historicoConverter"
+                                              layout="pageDirection">  
+                            <f:selectItems value="#{turmaMgrBean.allHistorico}"/>  
+                        </p:selectManyCheckbox>
+                    </h:panelGrid>
+                </p:panel>
+            </div>
+            <h:commandButton styleClass="buttonFormCadastro" value="Salvar" action="#{turmaMgrBean.salvarTurma()}"/>
+            <h:commandButton styleClass="buttonFormCadastro" value="Cancelar/Voltar" action="turmas" immediate="true"/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <p:growl />
+        </div>
+    </ui:define>
+</ui:composition>
